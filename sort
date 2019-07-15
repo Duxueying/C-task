@@ -1,0 +1,124 @@
+#include<math.h>
+#include<stdlib.h>
+#include<stdio.h>
+int zhua[100]= {0},zhub[100]= {0},zhuc[100]= {0};
+char charis(char x,int n)  //左右字符出现顺序固定，且根据n值奇偶尔不同
+{
+    switch(x)
+    {
+    case'A':
+        return(n%2==0)?'C':'B';
+    case'B':
+        return(n%2==0)?'A':'C';
+    case'C':
+        return(n%2==0)?'B':'A';
+    default:
+        return '0';
+    }
+}
+void print(char lch,char rch) //打印字符
+{
+    if(lch=='A')
+    {
+        switch(rch)
+        {
+        case'B':
+            zhub[0]++;
+            zhub[zhub[0]]=zhua[zhua[0]];
+            zhua[zhua[0]]=0;
+            zhua[0]--;
+            break;
+        case'C':
+            zhuc[0]++;
+            zhuc[zhuc[0]]=zhua[zhua[0]];
+            zhua[zhua[0]]=0;
+            zhua[0]--;
+            break;
+        default:
+            break;
+        }
+    }
+   
+    if(lch=='B')
+    {
+        switch(rch)
+        {
+        case'A':
+            zhua[0]++;
+            zhua[zhua[0]]=zhub[zhub[0]];
+            zhub[zhub[0]]=0;
+            zhub[0]--;
+            break;
+        case'B':
+            zhub[0]++;
+            zhub[zhub[0]]=zhuc[zhuc[0]];
+            zhuc[zhuc[0]]=0;
+            zhuc[0]--;
+            break;
+        default:
+            break;
+        }
+    }
+    int i;
+    printf("(");
+    for(i=1; i<=zhua[0]; i++)
+        printf("%d",zhua[i]);
+    printf(")");
+    printf("(");
+    for(i=1; i<=zhub[0]; i++)
+        printf("%d",zhub[i]);
+    printf(")");
+    printf("(");
+    for(i=1; i<=zhuc[0]; i++)
+        printf("%d",zhuc[i]);
+    printf(")");
+    printf("\n");
+}
+void Hannuo(int n)
+{
+//分配2^n个空间
+    bool* isrev;
+    isrev=(bool*)malloc(sizeof(bool)*(int)pow(2,n));
+    for(int i=1; i<pow(2,n);i++)
+    isrev[i]=false;  //循环计算是否逆序
+for(int ci=2; ci<=n; ci++)
+{
+    for(int zixh=(int)pow(2,ci-1);zixh<pow(2,ci);zixh+=4)  //初始值重复一次，自增值可加4，减少循环次数。
+              isrev[zixh]=isrev[(int)pow(2,ci)-zixh];     //该位置为中间位置，且奇次幂逆序，偶数幂不逆序
+        isrev[(int)pow(2,ci)]=((ci-1)^2==0)?false:true;
+    }
+    char lch='A',rch;
+    rch=(n%2==0?'B':'C');
+    printf("%d\t",1);
+	printf("%c->%c",lch,rch);
+    print(lch,rch);
+    for(int k=2; k<pow(2,n); k++)
+{
+    if(k%2==0)
+            rch=charis(lch,n);
+        else
+            lch=charis(rch,n);
+        printf("%d\t",k);
+        if(isrev[k])
+        {
+            printf("%c->%c",rch,lch);
+            print(rch,lch);
+        }
+        else
+        {
+            printf("%c->%c",lch,rch);
+            print(lch,rch);
+        }
+    }
+}
+int main()
+{
+    int n;
+    printf("请输入数字:");
+    scanf("%d",&n);
+    zhua[0]=n;
+    for(int i=1; i<=n; i++)
+        zhua[i]=n-i+1;
+    Hannuo(n);
+    return 0;
+}

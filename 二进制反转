@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+unsigned int reverse_bit(unsigned int value)
+{
+    int ret = 0;
+    int i = 0;
+    unsigned int len = sizeof(unsigned int )*8;//字节数*8=二进制位数
+    for(i=0;i<len;i++)
+    {
+        int j = value & 1;//依次得到最低位
+        ret |=(j<<(len-i-1));
+        value >>= 1;
+    }
+    return ret;
+}
+int main()
+{
+    int n = 0;
+    n =  reverse_bit(25); 
+    printf("%u\n",n);
+    return 0;
+}

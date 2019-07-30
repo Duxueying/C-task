@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int i,temp1,temp2;
+	for(i=0;i<1000;i++)
+	{
+		temp1=sqrt(i+100);
+	    temp2=sqrt(i+168);
+	    if((temp1*temp1==i+100)&&(temp2*temp2==i+168))
+	    {
+	    	printf("%d",i);
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,20 @@
+#include<stdio.h>
+char *myStrchr(char *arr,char c)
+{
+	while((*arr!='\0')&&(*arr!=c))
+	{
+		arr++;
+	}
+	if(*arr=c)
+	{
+		return arr;
+	}
+	return NULL;
+}
+int main()
+{
+	char arr[]="abcdefgabc";
+	char c='d';
+	printf("%s\n",myStrchr(arr,c));
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include<stdio.h>
+main()
+{
+	float salary=500;
+	int k;
+	int profit;
+	printf("输入员工这个月的销售额：");
+	scanf("%d",&profit);
+	if(profit%1000==0)
+	k=profit/1000;
+	else
+	k=profit/1000+1;
+	switch(k)
+	{
+		case 0:
+		case1:
+		case2:break;
+		case3:
+		case4:
+		case5:
+			salary+=profit*0.08;
+			break;
+		caes6:
+		case7:
+		case8:
+		case9:
+		case10:
+			salary+=profit*0.1;
+			break;
+		default:
+			salary+=profit*0.12;
+			break;
+	}
+	printf("员工这个月的工资为：%5.2f\n",salary); 
+	
+}

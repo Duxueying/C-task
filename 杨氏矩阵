@@ -1,0 +1,39 @@
+#include<stdio.h>
+int find_data(int arr[][3],int line,int k)
+{
+    if((k<arr[0][0])||(k>arr[line-1][3]))
+    {
+        return 0;
+    }
+    int lin=0;
+    int col=0;
+    while((lin<line)&&(col>=0))
+    {
+        if(k>arr[lin][col])
+        {
+            lin++;
+        }
+        else if(k<arr[lin][col])
+        {
+            col--;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+int main()
+{
+    int ret[][3]={{1,2,3},{2,3,4},{3,4,5}};
+    if(find_data(ret,3,3))
+    {
+        printf("find data\n");
+    }
+    else
+    {
+        printf("not find");
+    }
+    return 0;
+}

@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<string.h>
+#include<assert.h>
+void *Memmove(void*dest,const void*src,size_t num)
+{
+    char*d=(char*)dest+num-1;
+    char*s=(char*)src+num-1;
+    while(num)
+    {
+        *d-=*s--;
+        --num;
+    }
+    return dest;
+}
+int main()
+{
+    char str[]="abcdefg";
+    char str1[]="efg";
+    Memmove(str,str1,strlen(str1)+1);
+    printf("%s\n",str);
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include<stdio.h>
+#pragma pack(4)
+int main()
+{
+	struct tagTest1
+	{ 
+		short a;
+		char d;
+		long b;
+		
+	};
+	struct tagTest2
+	{ 
+		long b;
+		short c;
+		char d;
+		long a;
+	};
+	struct tagTest3
+	{ 
+		short c;
+		long b;
+		char d;
+		long a;
+	};
+	struct tagTest1 stT1;
+	struct tagTest2 stT2;
+	struct tagTest3 stT3;
+	printf("%d",sizeof(stT1));
+	printf("%d",sizeof(stT2));
+	printf("%d",sizeof(stT3));
+	return 0;
+}

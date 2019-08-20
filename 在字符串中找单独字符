@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+void find(char *str)
+{
+	int i,j;
+	int len=strlen(str);
+	for(i=0;i<len;i++)
+	{
+		for(j=i+1;j<len;j++)
+		{
+			if(str[i]==str[j])
+			{
+				break;
+			}
+			if(j==len-1)
+			{
+				printf("%c",str[i]);
+				return ;
+			}
+		}
+	}
+}
+int main()
+{
+	char str[]="abaccdeff";
+	find(str);
+	return 0;
+}

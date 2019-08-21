@@ -1,0 +1,39 @@
+#include<stdio.h>
+char* replace(char* str)
+{
+	char* pstr=str;
+	int count=0;
+	char* end=NULL;
+	char* end1=NULL;
+	while(*str++!='\0')
+	{
+		if(*str==' ')
+		{
+			count++;//计算有几个空格 
+		}
+	}
+	end=str;
+	end1=end+2*count;//扩充大小 
+	//str=pstr;
+	while(end!=end1)
+	{
+		if(*end ==' ')
+		{
+			*end1--='0';
+			*end1--='2';
+			*end1--='%';
+			end--;
+		}
+		else
+		{
+			*end1--=*end--;
+		}
+	}
+	return pstr;
+}
+int main()
+{
+	char str[128]="welcome to my";
+	printf("%s",replace(str));
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+void Storage(char *arr1,char*arr2,int size)
+{
+	int i=0;
+	for(i=0;i<size;i++)
+	{
+		arr2[i]=arr1[i];
+	}
+}
+void link()
+{
+	char arr1[]={"abcd"};
+	char arr2[]={"efg"};
+	char arr3[100]={0};
+	int size1=strlen(arr1);
+	Storage(arr1,&arr3[0],size1);
+	int size2=strlen(arr2);
+	Storage(arr2,&arr3[4],size2);
+	printf("%s\n",arr3);
+}
+int main()
+{
+	link();
+	return 0;
+}
